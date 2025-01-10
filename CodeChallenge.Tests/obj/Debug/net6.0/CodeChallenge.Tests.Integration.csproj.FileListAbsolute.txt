@@ -409,3 +409,4 @@
 /Users/nikeshbiraggari/Desktop/Files/dotnet-code-challenge/CodeChallenge.Tests/obj/Debug/net6.0/CodeChallenge.Tests.Integration.pdb
 /Users/nikeshbiraggari/Desktop/Files/dotnet-code-challenge/CodeChallenge.Tests/obj/Debug/net6.0/CodeChallenge.Tests.Integration.genruntimeconfig.cache
 /Users/nikeshbiraggari/Desktop/Files/dotnet-code-challenge/CodeChallenge.Tests/obj/Debug/net6.0/ref/CodeChallenge.Tests.Integration.dll
+/Users/nikeshbiraggari/Desktop/Files/dotnet-code-challenge/CodeChallenge.Tests/bin/Debug/net6.0/resources/CompensationSeedData.json
