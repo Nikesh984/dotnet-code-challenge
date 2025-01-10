@@ -51,6 +51,8 @@ namespace CodeChallenge.Repositories
             return compensation;
         }
 
+
+        // Eager loading
         private void LoadDirectReportsRecursively(Employee employee)
         {
             foreach (var directReport in employee.DirectReports)
@@ -63,6 +65,28 @@ namespace CodeChallenge.Repositories
                 // Recursive call for deeper levels
                 LoadDirectReportsRecursively(directReport);
             }
+        }
+
+        public Compensation UpdateCompensation(Compensation compensation)
+        {
+            var existingCompensation = _employeeContext.Compensations
+                                               .Include(e => e.Employee)  // Ensures Employee is loaded
+                                               .FirstOrDefault(e => e.Employee.EmployeeId == compensation.Employee.EmployeeId);
+
+            if (existingCompensation == null)
+            {
+                _logger.LogWarning($"Compensation not found for employee with ID: {compensation.Employee.EmployeeId}");
+
+                return null;
+            }
+
+            // Updates salary
+            existingCompensation.Salary = compensation.Salary;
+
+            _employeeContext.SaveChangesAsync().Wait();
+
+            return existingCompensation;
+
         }
     }
 }

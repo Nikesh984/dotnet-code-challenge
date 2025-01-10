@@ -6,5 +6,7 @@ namespace CodeChallenge.Services
     {
         Compensation Create(Compensation compensation);
         Compensation GetCompensationByEmployeeId(string id);
+
+        Compensation UpdateCompensation(Compensation compensation);
     }
 }

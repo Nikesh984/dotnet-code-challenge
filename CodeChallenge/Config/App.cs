@@ -44,6 +44,8 @@ namespace CodeChallenge.Config
 
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeRepository, EmployeeRespository>();
+
+            // Registering the newly created services and repositories in the DI container
             services.AddScoped<IReportingService, ReportingService>();
             services.AddScoped<IReportingRepository, ReportingRepository>();
             services.AddScoped<ICompensationRepository, CompensationRepository>();

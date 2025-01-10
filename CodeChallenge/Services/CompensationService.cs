@@ -39,5 +39,15 @@ namespace CodeChallenge.Services
 
             return null;
         }
+
+        public Compensation UpdateCompensation(Compensation compensation)
+        {
+            if (compensation != null)
+            {
+                return _compensationRepository.UpdateCompensation(compensation);
+            }
+
+            return null;
+        }
     }
 }

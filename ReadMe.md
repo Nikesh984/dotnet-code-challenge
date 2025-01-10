@@ -86,14 +86,41 @@ given the following employee structure:
 The numberOfReports for employee John Lennon (employeeId: 16a596ae-edd3-4847-99fe-c4518e82c86f) would be equal to 4.
 
 This new type should have a new REST endpoint created for it. This new endpoint should accept an employeeId and return
-the fully filled out ReportingStructure for the specified employeeId. The values should be computed on the fly and will
-not be persisted.
+the fully filled out ReportingStructure for the specified employeeId. The values should be computed on the fly and will not be persisted.
+
+### Endpoints created for Task 1:
+
+The following endpoints are now available to use for task 1:
+
+```
+* READ
+    * HTTP Method: GET
+    * URL: localhost:8080/api/reportingStructure/{id}
+    * RESPONSE: ReportingStructure
+```
 
 ### Task 2
 
-Create a new type, Compensation. A Compensation has the following fields: employee, salary, and effectiveDate. Create
-two new Compensation REST endpoints. One to create and one to read by employeeId. These should persist and query the
-Compensation from the persistence layer.
+Create a new type, Compensation. A Compensation has the following fields: employee, salary, and effectiveDate. Create two new Compensation REST endpoints. One to create and one to read by employeeId. These should persist and query the Compensation from the persistence layer.
+
+### Endpoints created for Task 2:
+
+```
+* CREATE
+    * HTTP Method: POST
+    * URL: localhost:8080/api/compensation
+    * PAYLOAD: Compensation (the body should contain compensation details, including employee ID and salary).
+    * RESPONSE: Compensation
+* UPDATE
+    * HTTP Method: PUT
+    * URL: localhost:8080/api/compensation/{id}
+    * PAYLOAD: Compensation (contains the updated compensation details, including employee ID and salary).
+    * RESPONSE: Compensation
+* READ
+    * HTTP Method: GET
+    * URL: localhost:8080/api/compensation/{id}
+    * RESPONSE: Compensation
+```
 
 ## Delivery
 

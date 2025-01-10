@@ -8,5 +8,7 @@ namespace CodeChallenge.Repositories
     {
         Compensation Create(Compensation compensation);
         Compensation GetCompensationByEmployeeId(string id);
+
+        Compensation UpdateCompensation(Compensation compensation);
     }
 }
