@@ -52,10 +52,23 @@ namespace CodeChallenge.Config
 
         private void SeedEmployeeDB()
         {
-            new EmployeeDataSeeder(
-                new EmployeeContext(
-                    new DbContextOptionsBuilder<EmployeeContext>().UseInMemoryDatabase("EmployeeDB").Options
-            )).Seed().Wait();
+            // new EmployeeDataSeeder(
+            //     new EmployeeContext(
+            //         new DbContextOptionsBuilder<EmployeeContext>().UseInMemoryDatabase("EmployeeDB").Options
+            // )).Seed().Wait();
+
+            var employeeContext = new EmployeeContext(
+                new DbContextOptionsBuilder<EmployeeContext>().UseInMemoryDatabase("EmployeeDB").Options
+            );
+
+            var employeeSeeder = new EmployeeDataSeeder(employeeContext);
+            var compensationSeeder = new CompensationDataSeeder(employeeContext);
+
+            // Seeding employee data from resources
+            employeeSeeder.Seed().Wait();
+
+            // Seeding compensation data from resources
+            compensationSeeder.Seed().Wait();
         }
     }
 }

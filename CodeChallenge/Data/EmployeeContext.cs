@@ -18,10 +18,13 @@ namespace CodeChallenge.Data
         {
             // Enable lazy loading proxies to display direct reportees in the response
             // Not using lazyLoading as it is not a best practice
+
             //options.UseLazyLoadingProxies();
         }
 
 
         public DbSet<Employee> Employees { get; set; }
+
+        public DbSet<Compensation> Compensations { get; set; }
     }
 }
