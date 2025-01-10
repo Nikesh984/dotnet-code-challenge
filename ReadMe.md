@@ -132,6 +132,7 @@ Create a new type, Compensation. A Compensation has the following fields: employ
     "salary": 60000,
     "effectiveDate": "2025-01-01"
 }
+```
 
 ## Delivery
 
