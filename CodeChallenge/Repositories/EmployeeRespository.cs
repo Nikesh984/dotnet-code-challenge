@@ -29,7 +29,18 @@ namespace CodeChallenge.Repositories
 
         public Employee GetById(string id)
         {
-            return _employeeContext.Employees.SingleOrDefault(e => e.EmployeeId == id);
+            //return _employeeContext.Employees.FirstOrDefault(e => e.EmployeeId == id);
+
+            var employee = _employeeContext.Employees
+                            .Include(e => e.DirectReports)
+                            .FirstOrDefault(e => e.EmployeeId == id);
+
+            if (employee != null)
+            {
+                LoadDirectReportsRecursively(employee);
+            }
+
+            return employee;
         }
 
         public Task SaveAsync()
@@ -40,6 +51,22 @@ namespace CodeChallenge.Repositories
         public Employee Remove(Employee employee)
         {
             return _employeeContext.Remove(employee).Entity;
+        }
+
+
+        //Helper method to load the direct reports of the direct reports for a given employee
+        private void LoadDirectReportsRecursively(Employee employee)
+        {
+            foreach (var directReport in employee.DirectReports)
+            {
+                // Explicitly load the DirectReports of each DirectReport
+                _employeeContext.Entry(directReport)
+                    .Collection(e => e.DirectReports)
+                    .Load();
+
+                // Recursive call for deeper levels
+                LoadDirectReportsRecursively(directReport);
+            }
         }
     }
 }
