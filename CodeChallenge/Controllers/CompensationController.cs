@@ -42,6 +42,12 @@ namespace CodeChallenge.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Compensation compensation)
         {
+
+            if (compensation == null)
+            {
+                return BadRequest();
+            }
+
             // Check if compensation already exists for the employee
             var existingCompensation = _compensationService.GetCompensationByEmployeeId(compensation.Employee.EmployeeId);
 

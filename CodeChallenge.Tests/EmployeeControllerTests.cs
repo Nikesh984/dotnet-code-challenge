@@ -170,7 +170,7 @@ namespace CodeCodeChallenge.Tests.Integration
         {
             var employee = new Employee()
             {
-                EmployeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f",
+                EmployeeId = "c0c2293d-16bd-4603-8e08-638a9d18b22c",
             };
 
             // Arrange
@@ -190,9 +190,56 @@ namespace CodeCodeChallenge.Tests.Integration
             // Assert
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
             var newCompensation = response.DeserializeContent<Compensation>();
+            Assert.IsNotNull(newCompensation);
             Assert.AreEqual(compensation.Employee.EmployeeId, newCompensation.Employee.EmployeeId);
             Assert.AreEqual(compensation.Salary, newCompensation.Salary);
         }
+
+        [TestMethod]
+        public void UpdateCompensation_Returns_Updated()
+        {
+            // Arrange
+            var employee = new Employee()
+            {
+                EmployeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f"
+            };
+
+            var existingCompensation = new Compensation()
+            {
+                Employee = employee,
+                Salary = 100000,
+                EffectiveDate = DateTime.UtcNow.AddYears(-1),
+            };
+
+            // Prepopulate existing compensation in the system
+            var createExistingRequestContent = new JsonSerialization().ToJson(existingCompensation);
+            _httpClient.PostAsync("api/compensation",
+                new StringContent(createExistingRequestContent, Encoding.UTF8, "application/json")).Wait();
+
+            // New compensation to update
+            var newCompensation = new Compensation()
+            {
+                Employee = employee,
+                Salary = 120000,
+                EffectiveDate = DateTime.UtcNow,
+            };
+
+            // Act
+            var requestContent = new JsonSerialization().ToJson(newCompensation);
+
+            // Execute
+            var putRequestTask = _httpClient.PutAsync($"api/compensation/{newCompensation.Employee.EmployeeId}",
+            new StringContent(requestContent, Encoding.UTF8, "application/json"));
+            var response = putRequestTask.Result;
+
+            // Assert
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var newCompensationReturned = response.DeserializeContent<Compensation>();
+            Assert.IsNotNull(newCompensationReturned);
+            Assert.AreEqual(newCompensation.Employee.EmployeeId, newCompensationReturned.Employee.EmployeeId);
+            Assert.AreEqual(newCompensation.Salary, newCompensationReturned.Salary);
+        }
+
 
         public void CreateCompensation_Returns_NotFound()
         {
