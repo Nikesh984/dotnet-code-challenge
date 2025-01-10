@@ -122,6 +122,18 @@ Create a new type, Compensation. A Compensation has the following fields: employ
     * RESPONSE: Compensation
 ```
 
+**Payload Example:**
+
+```json
+{
+    "employee": {
+        "employeeId": "c0c2293d-16bd-4603-8e08-638a9d18b22c"
+    },
+    "salary": 60000,
+    "effectiveDate": "2025-01-01"
+}
+
 ## Delivery
 
 Please upload your results to a publicly accessible Git repo. Free ones are provided by Github and Bitbucket.
+```
