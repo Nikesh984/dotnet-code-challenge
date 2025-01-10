@@ -35,3 +35,4 @@
 /Users/nikeshbiraggari/Desktop/Files/dotnet-code-challenge/CodeChallenge/obj/Debug/net6.0/CodeChallenge.pdb
 /Users/nikeshbiraggari/Desktop/Files/dotnet-code-challenge/CodeChallenge/obj/Debug/net6.0/CodeChallenge.genruntimeconfig.cache
 /Users/nikeshbiraggari/Desktop/Files/dotnet-code-challenge/CodeChallenge/obj/Debug/net6.0/ref/CodeChallenge.dll
+/Users/nikeshbiraggari/Desktop/Files/dotnet-code-challenge/CodeChallenge/bin/Debug/net6.0/resources/CompensationSeedData.json
